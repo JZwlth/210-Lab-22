@@ -230,5 +230,43 @@ cout << "Initial list forward: ";
     cout << "List after delete_pos(1) backward: ";
     list.print_reverse();
 
+    // Use delete_val() with value 20
+    cout << "\nUsing delete_val(20):\n";
+    list.delete_val(20);
+    cout << "List after delete_val(20) forward: ";
+    list.print();
+    cout << "List after delete_val(20) backward: ";
+    list.print_reverse();
+
+    // deleting a value that doesn't exist
+    cout << "\nUsing delete_val(100):\n";
+    list.delete_val(100);
+    cout << "List after delete_val(100) forward: ";
+    list.print();
+    cout << "List after delete_val(100) backward: ";
+    list.print_reverse();
+
+    // deleting at an invalid position
+    cout << "\nUsing delete_pos(10):\n";
+    list.delete_pos(10);
+    cout << "List after delete_pos(10) forward: ";
+    list.print();
+    cout << "List after delete_pos(10) backward: ";
+    list.print_reverse();
+
+    // Delete remaining elements
+    cout << "\nDeleting remaining elements using pop_front():\n";
+    list.pop_front();
+    list.pop_front();  // May delete from empty list, so no problem
+    cout << "List after deleting remaining elements forward: ";
+    list.print();
+    cout << "List after deleting remaining elements backward: ";
+    list.print_reverse();
+
+    //Pop from empty list
+    cout << "\nTrying to pop from empty list:\n";
+    list.pop_front();
+    list.pop_back();
+
     return 0;
 }
