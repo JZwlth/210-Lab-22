@@ -154,8 +154,40 @@ public:
             head = tail = nullptr;
         }
         delete temp;
+
+    void print() {
+        Node* current = head;
+        if (!current) {
+            cout << "List is empty.\n";
+            return;
+        }
+        while (current) {
+            cout << current->data << " ";
+            current = current->next;
+        }
+        cout << endl;
     }
 
+    void print_reverse() {
+        Node* current = tail;
+        if (!current) {
+            cout << "List is empty.\n";
+            return;
+        }
+        while (current) {
+            cout << current->data << " ";
+            current = current->prev;
+        }
+        cout << endl;
+    }
+
+    ~DoublyLinkedList() {
+        while (head) {
+            Node* temp = head;
+            head = head->next;
+            delete temp;
+        }
+    }
 };
 
 // Driver program
