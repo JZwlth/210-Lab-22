@@ -78,27 +78,83 @@ public:
     }
 
     void delete_val(int value) {
-        if (!head) return;  // Empty list
+        if (!head) return; 
 
         Node* temp = head;
         while (temp && temp->data != value)
             temp = temp->next;
 
-        if (!temp) return;  // Value not found
+        if (!temp) return;  
 
         if (temp->prev)
             temp->prev->next = temp->next;
         else
-            head = temp->next;  // Deleting the head
+            head = temp->next; 
 
         if (temp->next)
             temp->next->prev = temp->prev;
         else
-            tail = temp->prev;  // Deleting the tail
+            tail = temp->prev; 
 
         delete temp;
     }
 
+    void delete_pos(int position) {
+        if (position < 0) {
+            cout << "Position must be >= 0." << endl;
+            return;
+        }
+
+        if (!head) {
+            cout << "List is empty. Node not deleted.\n";
+            return;  
+        }
+
+        Node* temp = head;
+        for (int i = 0; i < position && temp; ++i)
+            temp = temp->next;
+
+        if (!temp) {
+            cout << "Position exceeds list size. Node not deleted.\n";
+            return;
+        }
+
+        if (temp->prev)
+            temp->prev->next = temp->next;
+        else
+            head = temp->next;  
+
+        if (temp->next)
+            temp->next->prev = temp->prev;
+        else
+            tail = temp->prev; 
+
+        delete temp;
+    }
+
+    void pop_front() {
+        if (!head) return;  
+        Node* temp = head;
+        if (head->next) {
+            head = head->next;
+            head->prev = nullptr;
+        } else {
+            head = tail = nullptr;
+        }
+        delete temp;
+    }
+
+    void pop_back() {
+        if (!tail) return;  
+        Node* temp = tail;
+        if (tail->prev) {
+            tail = tail->prev;
+            tail->next = nullptr;
+        } else {
+            head = tail = nullptr;
+        }
+        delete temp;
+    }
 
 };
 
