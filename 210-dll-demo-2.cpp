@@ -1,8 +1,8 @@
 // COMSC-210 | Lab 22 | Zhaoyi Zheng
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
-
-const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
 
 class DoublyLinkedList {
 private:
@@ -154,6 +154,7 @@ public:
             head = tail = nullptr;
         }
         delete temp;
+    }
 
     void print() {
         Node* current = head;
@@ -193,20 +194,41 @@ public:
 // Driver program
 int main() {
     DoublyLinkedList list;
-    int size = rand() % (MAX_LS-MIN_LS+1) + MIN_LS;
 
-    for (int i = 0; i < size; ++i)
-        list.push_back(rand() % (MAX_NR-MIN_NR+1) + MIN_NR);
-    cout << "List forward: ";
+    list.push_back(10);
+    list.push_back(20);
+    list.push_back(30);
+    list.push_back(40);
+    list.push_back(50);
+
+cout << "Initial list forward: ";
     list.print();
-
-    cout << "List backward: ";
+    cout << "Initial list backward: ";
     list.print_reverse();
 
-    cout << "Deleting list, then trying to print.\n";
-    list.~DoublyLinkedList();
-    cout << "List forward: ";
+    // pop_front()
+    cout << "\nUsing pop_front():\n";
+    list.pop_front();
+    cout << "List after pop_front() forward: ";
     list.print();
+    cout << "List after pop_front() backward: ";
+    list.print_reverse();
+
+    // pop_back()
+    cout << "\nUsing pop_back():\n";
+    list.pop_back();
+    cout << "List after pop_back() forward: ";
+    list.print();
+    cout << "List after pop_back() backward: ";
+    list.print_reverse();
+
+    // delete_pos() to delete node at position 1
+    cout << "\nUsing delete_pos(1):\n";
+    list.delete_pos(1);
+    cout << "List after delete_pos(1) forward: ";
+    list.print();
+    cout << "List after delete_pos(1) backward: ";
+    list.print_reverse();
 
     return 0;
 }
